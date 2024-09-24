@@ -7,7 +7,7 @@ ll_taskEvent_t Task0_Events(ll_taskId_t taskId, ll_taskEvent_t events)
 {
 	if(events & LL_EVENT_MSG)
 	{
-		LOG_I("task%d receive message: %s\r\n", task0Id, LLOS_Msg_Receive());
+		LOG_I("task%d receive message: %s\r\n", task0Id, (char *)LLOS_Msg_Receive());
 		LLOS_Msg_Clear();
 		LLOS_Msg_Send(task1Id, (uint8_t *)"from task0 -> task1 are you OK?"); /* 向task1发送消息 */
 		return LL_EVENT_MSG;

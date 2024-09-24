@@ -5,9 +5,10 @@
  * 所以建议尽可能地使用状态机对阻塞任务进行拆分。RTC闹钟和软件定时器的回调函数里不能
  * 有阻塞。
  * 作者: LittleLeaf All rights reserved
- * 版本: V1.0.0
- * 修订日期: 2024 09 13
+ * 版本: V1.0.1
+ * 修订日期: 2024 09 23
  * 修订日志:
+ * V1.0.1 事件的值越小优先级越高表述有误，应为事件的值越大优先级越高
  * N/A
  * 移植步骤:
  * 1) 初始化调用LLOS_Init;
@@ -145,7 +146,7 @@ void LLOS_Loop(void);
  * 描述: 启动一个事件，重复调用可以刷新事件启动时间(tick)
  * 参数:
  * 		taskId: 启动哪一个任务
- * 		events: 启动该任务的哪一个事件，Bitmap，事件的值越小优先级越高
+ * 		events: 启动该任务的哪一个事件，Bitmap，事件的值越大优先级越高
  * 		tick: 多少个tick后启动
  ====================================================================================*/
 void LLOS_Start_Event(ll_taskId_t taskId, ll_taskEvent_t events, ll_tick_t tick);
@@ -155,7 +156,7 @@ void LLOS_Start_Event(ll_taskId_t taskId, ll_taskEvent_t events, ll_tick_t tick)
  * 描述: 停止一个事件
  * 参数:
  * 		taskId: 停止哪一个任务
- * 		events: 停止该任务的哪一个事件，Bitmap
+ * 		events: 停止该任务的哪一个事件，Bitmap，事件的值越大优先级越高
  ====================================================================================*/
 void LLOS_Stop_Event(ll_taskId_t taskId, ll_taskEvent_t events);
 
@@ -195,14 +196,14 @@ void LLOS_Tick_Increase(uint8_t ms);
  * 		taskId: 向哪一个任务发送消息
  * 		pMsg: 消息数据首地址
  ====================================================================================*/
- void LLOS_Msg_Send(ll_taskId_t taskId, const uint8_t *pMsg);
+ void LLOS_Msg_Send(ll_taskId_t taskId, const void *pMsg);
 
 /*====================================================================================
  * 函数名: LLOS_Msg_Receive
  * 描述: 某个任务收到消息后，使用该函数接收消息
  * 返回值: 消息数据首地址
  ====================================================================================*/
-const uint8_t *LLOS_Msg_Receive(void);
+const void *LLOS_Msg_Receive(void);
 
 /*====================================================================================
  * 函数名: LLOS_Msg_Clear

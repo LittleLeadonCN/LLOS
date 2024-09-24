@@ -1,8 +1,8 @@
 /*
  * SSD1306/CH1115以及兼容的屏幕驱动HAL层
  * 作者: LittleLeaf All rights reserved
- * 版本: V1.0.0T
- * 修订日期: 2024 09 12
+ * 版本: V1.0.1T
+ * 修订日期: 2024 09 24
  * 修订日志:
  * N/A
  */
@@ -16,9 +16,9 @@
 #define DISPLAY1_DC_PORT		devGPIOA
 #define DISPLAY1_DC_PIN     	LL_BV(12)
 
-#define SPI_INTERFACE
+#define SPI_INTERFACE			(1)
 
-#ifndef SPI_INTERFACE
+#if !SPI_INTERFACE
 #define I2C_INTERFACE
 #endif
 

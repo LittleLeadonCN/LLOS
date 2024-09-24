@@ -18,7 +18,7 @@ ll_taskEvent_t Task0_Events(ll_taskId_t taskId, ll_taskEvent_t events)
 {
 	if(events & LL_EVENT_MSG)
 	{
-		LOG_I("task%d receive message: %s\r\n", taskId, LLOS_Msg_Receive());
+		LOG_I("task%d receive message: %s\r\n", taskId, (char *)LLOS_Msg_Receive());
 		LLOS_Msg_Clear();
 		return LL_EVENT_MSG;
 	}

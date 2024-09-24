@@ -1,7 +1,7 @@
  /* 
  * 作者: LittleLeaf All rights reserved
- * 版本: V1.0.0
- * 修订日期: 2024 09 13
+ * 版本: V1.0.1
+ * 修订日期: 2024 09 23
  * 修订日志:
  * N/A
  */
@@ -39,7 +39,7 @@ struct ll_alarm_t
 static volatile ll_tick_t sysTick;
 static volatile uint8_t tickMultiple = 1;
 static ll_taskId_t taskIndex;
-static const uint8_t *msg;
+static const void *msg;
 
 static struct ll_eventCB_list_t eventCB_list[LL_TASK_NUM]; /* 0xFF保留不可用 */
 static struct ll_timerCB_list_t timerCB_list[LL_TIMER_NUM];
@@ -194,12 +194,12 @@ void LLOS_Tick_Increase(uint8_t ms)
 	}
 }
 
-void LLOS_Msg_Send(ll_taskId_t taskId, const uint8_t *pMsg)
+void LLOS_Msg_Send(ll_taskId_t taskId, const void *pMsg)
 {
 	msg = pMsg;
 	LLOS_Start_Event(taskId, LL_EVENT_MSG, 0);
 }
-const uint8_t *LLOS_Msg_Receive(void)
+const void *LLOS_Msg_Receive(void)
 {
 	return msg;
 }

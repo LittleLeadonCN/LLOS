@@ -1,0 +1,20 @@
+{
+	"details": [
+		{
+			"file": "General_Files/drivers/CDC.c",
+			"encoding": "utf8"
+		},
+		{
+			"file": "General_Files/system.c",
+			"encoding": "utf8"
+		},
+		{
+			"file": "General_Files/system.h",
+			"encoding": "utf8"
+		},
+		{
+			"file": "General_Files/drivers/CDC.h",
+			"encoding": "utf8"
+		}
+	]
+}

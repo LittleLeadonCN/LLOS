@@ -921,7 +921,7 @@ static const ll_unit_entry_t builtin_units[] =
 	{"kW", 1000.0, 2},
 	{"Hz", 1.0, 2},
 
-	// // 长度1
+	// 长度1
 	{"A", 1.0, 1},
 	{"V", 1.0, 1},
 	{"s", 1.0, 1},
